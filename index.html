@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Some title</title>
+    <link href="http://fonts.googleapis.com/css?family=Cuprum&amp;subset=cyrillic,latin" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="css/screen.css">
+
+    <script id="dateBlockTemplate" type="text/html">
+        <div class="date_block" data-date="{{ date }}">
+            <h2 class="date_header">
+                {{ date }}
+                <div class="date_block_delete"><i class="icon-close"></i></div>
+            </h2>
+            <div class="date_content">
+                    {{>dateblockitemtemplate}}
+            </div>
+        </div>
+    </script>
+
+    <script id="dateBlockItemTemplate" type="text/html">
+        {{#lectureList}}
+            <div class="date_item" data-time="">
+                {{time}} {{authorName}} "{{lectureTheme}}"
+                <div class="date_item_content">
+                    <ul>
+                    {{#materialLinks}}
+                        <li><a href="{{link}}">{{title}}</a></li>
+                    {{/materialLinks}}
+                    </ul>
+                </div>
+                <div class="date_item_delete"><i class="icon-close"></i></div>
+            </div>
+        {{/lectureList}}
+    </script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/andyet/ICanHaz.js/master/ICanHaz.min.js"></script>
+    <script type="text/javascript" src="js/lecture.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+
+    <div id="tabs" class="navbar">
+        <ul class="nav">
+            <li class="active"><a href="#tab-1" data-toggle="tab">Главная</a></li>
+            <li><a href="#tab-2" data-toggle="tab">Импорт</a></li>
+            <li><a href="#tab-3" data-toggle="tab">Экспорт</a></li>
+        </ul>
+    </div>
+
+    <div class="page">
+
+        <div id="tab-1" class="tabs active">
+            <div class="date_block" data-date="05.02.2013">
+                <h2 class="date_header">
+                    05.02.2013
+                    <div class="date_block_delete"><i class="icon-close"></i></div>
+                </h2>
+                <div class="date_content">
+                    <div class="date_item" data-time="">
+                        19:17 Иван Карев "Клиентская оптимизация"
+                        <div class="date_item_content">
+                            <ul>
+                                <li><a href="http://example.com/file1.pdf">Скачать слайдики</a></li>
+                                <li><a href="http://example.com/file1.avi">Скачать видюшечку</a></li>
+                                <li><a href="http://example.com/file1.mp3">Скачать аудюшечку</a></li>
+                            </ul>
+                        </div>
+                        <div class="date_item_delete"><i class="icon-close"></i></div>
+                    </div>
+                    <div class="date_item" data-time="">
+                        20:20 Виктор Ашик "Командная строка UNIX"
+                        <div class="date_item_content">
+                            <ul>
+                                <li><a href="http://example.com/file1.pdf">Скачать слайдики</a></li>
+                                <li><a href="http://example.com/file1.avi">Скачать видюшечку</a></li>
+                                <li><a href="http://example.com/file1.mp3">Скачать аудюшечку</a></li>
+                            </ul>
+                        </div>
+                        <div class="date_item_delete"><i class="icon-close"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- tab-1 end -->
+
+        <div id="tab-2" class="tabs">
+            <textarea id="import-textarea"></textarea>
+            <button type="submit" id="import-submit">Import</button>
+        </div>
+
+        <div id="tab-3" class="tabs">
+            И тут текст
+        </div>
+
+    </div><!-- page end -->
+</body>
+</html>
