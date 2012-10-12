@@ -1,0 +1,98 @@
+[
+		{
+		"date": "01.10.2012",
+		"time": "19:17",
+		"authorName": "Иван Карев",
+		"lectureTheme": "Клиентская оптимизация",
+		"thesis": [
+			"Тезис первый о том и этом",
+			"Тезис второй о том и о сём",
+			"Тезис третий о первом и втором"
+		],
+		"materialLinks": [
+			{
+				"title": "Скачать слайдики",
+				"link": "http://example.com/file1.pdf"
+			},
+			{
+				"title": "Скачать видюшечку",
+				"link": "http://example.com/file1.avi"
+			},
+			{
+				"title": "Скачать аудюшечку",
+				"link": "http://example.com/file1.mp3"
+			}
+		]},
+		{
+		"date": "01.10.2012",
+		"time": "20:20",
+		"authorName": "Виктор Ашик",
+		"lectureTheme": "Командная строка UNIX",
+		"thesis": [
+			"Тезис первый о том и этом",
+			"Тезис второй о том и о сём",
+			"Тезис третий о первом и втором"
+		],
+		"materialLinks": [
+			{
+				"title": "Скачать слайдики",
+				"link": "http://example.com/file1.pdf"
+			},
+			{
+				"title": "Скачать видюшечку",
+				"link": "http://example.com/file1.avi"
+			},
+			{
+				"title": "Скачать аудюшечку",
+				"link": "http://example.com/file1.mp3"
+			}
+		]},
+		{
+		"date": "07.04.2013",
+		"time": "19:17",
+		"authorName": "Сергей Пузанков",
+		"lectureTheme": "XSLT",
+		"thesis": [
+			"Тезис первый о том и этом",
+			"Тезис второй о том и о сём",
+			"Тезис третий о первом и втором"
+		],
+		"materialLinks": [
+			{
+				"title": "Скачать слайдики",
+				"link": "http://example.com/file1.pdf"
+			},
+			{
+				"title": "Скачать видюшечку",
+				"link": "http://example.com/file1.avi"
+			},
+			{
+				"title": "Скачать аудюшечку",
+				"link": "http://example.com/file1.mp3"
+			}
+		]},
+		{
+		"date": "01.10.2012",
+		"time": "21:20",
+		"authorName": "Вячеслав Олиянчук",
+		"lectureTheme": "Все что Вы делаете в Vim неправильно",
+		"thesis": [
+			"Тезис первый о том и этом",
+			"Тезис второй о том и о сём",
+			"Тезис третий о первом и втором"
+		],
+		"materialLinks": [
+			{
+				"title": "Скачать слайдики",
+				"link": "http://example.com/file1.pdf"
+			},
+			{
+				"title": "Скачать видюшечку",
+				"link": "http://example.com/file1.avi"
+			},
+			{
+				"title": "Скачать аудюшечку",
+				"link": "http://example.com/file1.mp3"
+			}
+		]}
+]
