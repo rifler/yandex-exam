@@ -137,11 +137,56 @@ var YA_LECTURES = (function ($, ich) {
             }
 
             save();
+        },
+
+        deleteBlock = function (date) {
+            var index = indexes.indexOf(date);
+
+            indexes.splice(index, 1);
+            delete lectures[date];
+        },
+
+        deleteLecture = function (date, time) {
+            var result = false,
+                dayLectures = lectures[date];
+
+            if (dayLectures.length == 1) {
+                deleteBlock(date);
+                result = true;
+            } else {
+                for (var i = 0; i < dayLectures.length; i++) {
+                    if (dayLectures[i].time == time) {
+                        dayLectures.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            return result;
+        },
+
+        remove = function (type, elem) {
+            var deletedElement = elem.element;
+
+            if (type == 'block') {
+                deleteBlock(elem.data('date'));
+            } else if (type == 'lecture') {
+                if (deleteLecture(elem.data('date'), elem.data('time'))) {
+                    elem = elem.closest('.date_block');
+                }
+            }
+
+            elem.fadeOut('fast', function () {
+                $(this).remove();
+            });
+
+            save();
         };
 
     return {
         init: init,
-        add : add
+        add: add,
+        remove: remove
     };
 
 })(window.jQuery, window.ich);
