@@ -120,6 +120,25 @@ var YA_LECTURES = (function ($, ich) {
             }
         },
 
+        canInsert = function (date, time) {
+            var lngth = lectures[date].length,
+                date1 = dateReturn({date: date, time: time}),
+                date2,
+                flag = true,
+                i;
+
+            for (i = 0; i < lngth; i++) {
+                date2 = dateReturn({date: lectures[date][i].date, time: lectures[date][i].time});
+
+                if (date1 === date2) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            return flag;
+        },
+
         add = function (newLectures) {
             var index,
                 i;
@@ -144,14 +163,20 @@ var YA_LECTURES = (function ($, ich) {
         },
 
         edit = function (edLecture) {
-            var newDate = dateReturn({date: edLecture.date, time: edLecture.time}),
+            var oldDatee = edLecture.oldDate,
+                oldTime = edLecture.oldTime,
+                newDate = dateReturn({date: edLecture.date, time: edLecture.time}),
                 oldDate = dateReturn({date: edLecture.oldDate, time: edLecture.oldTime});
 
             delete edLecture.oldDate;
             delete edLecture.oldTime;
 
             if (newDate != oldDate) {
-                console.log('Oppa gangnam style!');
+                if (canInsert(edLecture.date, edLecture.time)) {
+                    remove({type: 'lecture', date: oldDatee, time: oldTime, speed: 0});//oldDatee, oldTime);
+                    add([edLecture]);
+                }
+
             } else {
                 setLecture(edLecture.date, edLecture.time, edLecture);
                 redrawLecture(edLecture.date, edLecture.time, edLecture);
@@ -192,18 +217,22 @@ var YA_LECTURES = (function ($, ich) {
             return result;
         },
 
-        remove = function (type, elem) {
-            var deletedElement = elem.element;
+        remove = function (obj) {
+            var date = obj.date || obj.elem.data('date'),
+                time = obj.time || obj.elem.data('time'),
+                elem = obj.elem,
+                speed = (obj.speed !== undefined) ? obj.speed : 'fast';
 
-            if (type == 'block') {
-                deleteBlock(elem.data('date'));
-            } else if (type == 'lecture') {
-                if (deleteLecture(elem.data('date'), elem.data('time'))) {
+            if (obj.type == 'block') {
+                deleteBlock(date);
+            } else if (obj.type == 'lecture') {
+                elem = elem || $mainBlock.find('.date_block[data-date="' + date + '"] .date_item[data-time="' + time + '"]')
+                if (deleteLecture(date, time)) {
                     elem = elem.closest('.date_block');
                 }
             }
 
-            elem.fadeOut('fast', function () {
+            elem.fadeOut(speed, function () {
                 $(this).remove();
             });
 

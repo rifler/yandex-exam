@@ -22,10 +22,10 @@ var POPUP = (function ($, ich, ya_lectures) {
                 .append(bg)
                 .append(dialog)
                 .on('click', '.date_block_delete', function () {
-                    ya_lectures.remove('block', $(this).closest('.date_block'))
+                    ya_lectures.remove({type: 'block', elem: $(this).closest('.date_block')})
                 })
                 .on('click', '.date_item_delete', function () {
-                    ya_lectures.remove('lecture', $(this).closest('.date_item'))
+                    ya_lectures.remove({type: 'lecture', elem: $(this).closest('.date_item')})
                 })
                 .on('click', '.date_item_edit', function () {
                     var elem = $(this).closest('.date_item'),
