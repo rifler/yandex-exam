@@ -20,10 +20,27 @@ var POPUP = (function ($, ich, ya_lectures) {
             bg.show();
         },
 
+        showDetailed = function (contentObj) {
+            dialog
+                .empty()
+                .append(ich.detailedInfoTemplate(contentObj))
+                .show()
+
+            bg.show();
+        },
+
         init = function () {
             $('body')
                 .append(bg)
                 .append(dialog)
+                .on('click', '.date_item', function () {
+                    var elem = $(this),
+                        lecture = ya_lectures.getLecture(elem.data('date'), elem.data('time'));
+
+                    showDetailed(lecture);
+
+                    return false;
+                })
                 .on('click', '.date_block_delete', function () {
                     ya_lectures.remove({type: 'block', elem: $(this).closest('.date_block')})
                 })

@@ -74,6 +74,25 @@
         </form>
     </script>
 
+    <script type="text/html" id="detailedInfoTemplate">
+        <h1 class="popup_dialog_header">{{ date }} {{ lectureTheme }}</h1>
+        <div>
+            <ul>
+                <li>Время: {{ time }}</li>
+                <li>Лектор: {{ authorName }}</li>
+                <li>Ссылка на презентацию: <a href="{{ materialLink }}" target="_blank">{{ materialLink }}</a></li>
+                <li>
+                    Тезисы:
+                    <ul>
+                        {{#thesis}}
+                            <li>{{ . }}</li>
+                        {{/thesis}}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </script>
+
     <script type="text/html" id="newThesisTemplate">
         {{#thesis}}
             <label>

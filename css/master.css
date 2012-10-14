@@ -12,129 +12,99 @@ body {
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 a:link, a:visited {
-	outline: none;
-	color: #369;
+    outline: none;
+    color: #369;
 }
 
 .navbar {
-	position: fixed;
-	width: 100%;
-	top: 0;
-	left: 0;
-	background-color: #1B1B1B;
-	z-index: 1;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #1B1B1B;
+    z-index: 1;
 }
 
 .nav {
-	width: 80%;
-	min-width: 960px;
-	margin: 0 auto;
+    width: 80%;
+    min-width: 960px;
+    margin: 0 auto;
 }
 
 .nav li {
-	display: inline-block;
-	color: #555;
+    display: inline-block;
+    color: #555;
 }
 
 .nav li a {
-	display: block;
-	padding: 7px;
+    display: block;
+    padding: 7px;
 }
 
 .nav li.active a,
 .nav li a:hover {
-	color: white;
+    color: white;
 }
 
 .page {
-	width: 80%;
-	min-width: 960px;
-	margin: 40px auto;
+    width: 80%;
+    min-width: 960px;
+    margin: 40px auto;
 }
 
 .tabs {
-	display: none;
+    display: none;
 }
 
 .tabs.active {
-	display: block;
+    display: block;
 }
 
 .date_block {
-	border: 1px solid #ccc;
-	margin-bottom: 20px;
-	border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    border-radius: 4px;
 }
 
 .date_header {
-	position: relative;
-	padding: 3px 10px;
-	/*background-color: #EAEAEA;*/
-	border-bottom: 1px solid #808080;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-	font-family: 'Cuprum';
-	color: #B55D5C;
-	font-size: 21px;
-	/*font-style: italic;*/
+    position: relative;
+    padding: 3px 10px;
+    border-bottom: 1px solid #808080;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    font-family: 'Cuprum';
+    color: #B55D5C;
+    font-size: 21px;
 }
 
 .date_content {
-	padding: 0 10px;
-	background-color: #B6B9B1;
+    padding: 0 10px;
+    background-color: #B6B9B1;
 }
 
 .date_item {
-	position: relative;
-	padding: 5px 0;
-	/*cursor: pointer;*/
-
+    position: relative;
+    padding: 5px 0;
+    cursor: pointer;
 }
 
-/*.date_item_delete,
-.date_block_delete {
-	position: absolute;
-	top: 0;
-	right: 0;
-	cursor: pointer;
-	text-decoration: underline;
-	opacity: 0.4;
-        -webkit-transition: opacity .3s linear;
-           -moz-transition: opacity .3s linear;
-             -o-transition: opacity .3s linear;
-                transition: opacity .3s linear;
-}
-
-.date_item_delete:hover,
-.date_block_delete:hover {
-	opacity: 1;
-}
-
-.date_block_delete {
-	right: 5px;
-}
-
-.date_item_delete {
-	top: 5px;
-}
-*/
 .date_item_content {
-	display: none;
+    display: none;
 }
 
 
 textarea {
-	display: block;
-	width: 50%;
-	resize: none;
-	height: 500px;
+    display: block;
+    width: 50%;
+    resize: none;
+    height: 500px;
 }
 
 textarea:focus {
-	outline: none;
+    outline: none;
 }
 
 .popup_background {
