@@ -90,11 +90,11 @@ a:link, a:visited {
 .date_item {
 	position: relative;
 	padding: 5px 0;
-	cursor: pointer;
+	/*cursor: pointer;*/
 
 }
 
-.date_item_delete,
+/*.date_item_delete,
 .date_block_delete {
 	position: absolute;
 	top: 0;
@@ -120,18 +120,11 @@ a:link, a:visited {
 .date_item_delete {
 	top: 5px;
 }
-
+*/
 .date_item_content {
 	display: none;
 }
 
-.icon-close {
-	display: inline-block;
-	width: 11px;
-	height: 11px;
-	background-image: url('../pic/icon-close.gif');
-	cursor: pointer;
-}
 
 textarea {
 	display: block;
@@ -142,6 +135,57 @@ textarea {
 
 textarea:focus {
 	outline: none;
+}
+
+.popup_background {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 2;
+}
+
+.popup_dialog {
+    position: absolute;
+    display: none;
+    width: 960px;
+    top: 0;
+    left: 50%;
+    margin-left: -480px;
+    background-color: white;
+    z-index: 3;
+    padding: 20px 10px;
+    margin-top: 10px;
+}
+
+.popup_dialog_header {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.popup_dialog_form label {
+    display: block;
+}
+
+/* Вспомогательные стили */
+
+.fl_l {
+    float: left;
+}
+
+.fl_r {
+    float: right;
+}
+
+.wrapped {
+    overflow: hidden;
+    word-wrap: break-word;
 }
 /* очищающийся контейнер для плавающих элементов */
 

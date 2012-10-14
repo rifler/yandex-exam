@@ -1,0 +1,20 @@
+.icon {
+    display: -moz-inline-stack;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    vertical-align: top;
+    background-image: url("../pic/icons.png");
+    background-position: 15px 15px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.icon-edit {
+    background-position: 0 0;
+}
+
+.icon-delete {
+    background-position: 0 -15px;
+}

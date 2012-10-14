@@ -17,7 +17,8 @@ var YA_LECTURES = (function ($, ich) {
                 html.push(ich.dateBlockTemplate({date: indexes[i], lectureList: lectures[indexes[i]]}));
             }
 
-            $mainBlock.append(html);
+            $mainBlock
+                .append(html);
         },
 
         dateReturn = function (dateObj) {
@@ -124,6 +125,9 @@ var YA_LECTURES = (function ($, ich) {
                 i;
 
             for (i = 0; i < newLectures.length; i++) {
+                if (typeof newLectures[i].thesis == 'string') {
+                    newLectures[i].thesis = [newLectures[i].thesis];
+                }
                 /* Если такой ключ уже есть в массиве индексов, то вставляем только в лекции */
                 /* Иначе вставляем новый элемент в индексы и создаем в лекциях новый массив на эту дату с новым элементом */
                 if (indexes.indexOf(newLectures[i].date) >= 0) {
@@ -137,6 +141,29 @@ var YA_LECTURES = (function ($, ich) {
             }
 
             save();
+        },
+
+        edit = function (edLecture) {
+            var newDate = dateReturn({date: edLecture.date, time: edLecture.time}),
+                oldDate = dateReturn({date: edLecture.oldDate, time: edLecture.oldTime});
+
+            delete edLecture.oldDate;
+            delete edLecture.oldTime;
+
+            if (newDate != oldDate) {
+                console.log('Oppa gangnam style!');
+            } else {
+                setLecture(edLecture.date, edLecture.time, edLecture);
+                redrawLecture(edLecture.date, edLecture.time, edLecture);
+            }
+        },
+
+        redrawLecture = function (date, time, elem) {
+            $mainBlock
+                .find('.date_block[data-date="' + elem.date + '"] .date_item[data-time="' + elem.time + '"]')
+                    .empty()
+                    .append(ich.dateBlockItemInner(elem));
+
         },
 
         deleteBlock = function (date) {
@@ -181,12 +208,30 @@ var YA_LECTURES = (function ($, ich) {
             });
 
             save();
+        },
+
+        getLecture = function (date, time) {
+            for (var i = 0; i < lectures[date].length; i++) {
+                if (lectures[date][i].time == time) {
+                    return lectures[date][i];
+                }
+            }
+        },
+
+        setLecture = function (date, time, newObj) {
+            var l = getLecture(date, time);
+
+            $.extend(getLecture(date, time), newObj);
+
+            save();
         };
 
     return {
         init: init,
         add: add,
-        remove: remove
+        remove: remove,
+        edit: edit,
+        getLecture: getLecture
     };
 
 })(window.jQuery, window.ich);
