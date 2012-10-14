@@ -121,7 +121,7 @@ var YA_LECTURES = (function ($, ich) {
         },
 
         canInsert = function (date, time) {
-            var lngth = lectures[date].length,
+            var lngth = (lectures[date] !== undefined) ? lectures[date].length : 0,
                 date1 = dateReturn({date: date, time: time}),
                 date2,
                 flag = true,
