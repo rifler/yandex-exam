@@ -139,11 +139,28 @@ var YA_LECTURES = (function ($, ich) {
             return flag;
         },
 
+        getJSON = function () {
+            var res = [],
+                lngth;
+
+            for (var i in lectures) {
+                if (lectures.hasOwnProperty(i)) {
+                    lngth = lectures[i].length;
+                    for (var j = 0; j < lngth; j++) {
+                        res.push(lectures[i][j]);
+                    }
+                }
+            }
+
+            return JSON.stringify(res);
+        }
+
         add = function (newLectures) {
             var index,
+                lngth = newLectures.length,
                 i;
 
-            for (i = 0; i < newLectures.length; i++) {
+            for (i = 0; i < lngth; i++) {
                 if (typeof newLectures[i].thesis == 'string') {
                     newLectures[i].thesis = [newLectures[i].thesis];
                 }
@@ -200,13 +217,14 @@ var YA_LECTURES = (function ($, ich) {
 
         deleteLecture = function (date, time) {
             var result = false,
-                dayLectures = lectures[date];
+                dayLectures = lectures[date],
+                lngth = dayLectures.length;
 
-            if (dayLectures.length == 1) {
+            if (lngth == 1) {
                 deleteBlock(date);
                 result = true;
             } else {
-                for (var i = 0; i < dayLectures.length; i++) {
+                for (var i = 0; i < lngth; i++) {
                     if (dayLectures[i].time == time) {
                         dayLectures.splice(i, 1);
                         break;
@@ -240,7 +258,9 @@ var YA_LECTURES = (function ($, ich) {
         },
 
         getLecture = function (date, time) {
-            for (var i = 0; i < lectures[date].length; i++) {
+            var lngth = lectures[date].length;
+
+            for (var i = 0; i < lngth; i++) {
                 if (lectures[date][i].time == time) {
                     return lectures[date][i];
                 }
@@ -260,7 +280,8 @@ var YA_LECTURES = (function ($, ich) {
         add: add,
         remove: remove,
         edit: edit,
-        getLecture: getLecture
+        getLecture: getLecture,
+        getJSON: getJSON
     };
 
 })(window.jQuery, window.ich);

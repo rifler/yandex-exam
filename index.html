@@ -104,7 +104,7 @@
             <li class="active"><a href="#tab-1" data-toggle="tab">Главная</a></li>
             <li><a href="#tab-2" data-toggle="tab">Импорт</a></li>
             <li><a href="#tab-3" data-toggle="tab">Экспорт</a></li>
-            <li><a href="#" id="newLecture">Новая лекция</a></li>
+            <li><a href="#" class="newLecture">Новая лекция</a></li>
         </ul>
     </div>
 
@@ -121,7 +121,10 @@
         </div>
 
         <div id="tab-3" class="tabs">
-            И тут текст
+            <form action="/" id="export-form">
+                <textarea id="import-textarea"></textarea>
+                <button type="submit" id="export-submit">Import</button>
+            </form>
         </div>
 
     </div><!-- page end -->
