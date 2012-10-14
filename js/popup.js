@@ -14,6 +14,9 @@ var POPUP = (function ($, ich, ya_lectures) {
                 .append(ich.formTemplate(contentObj))
                 .show();
 
+            dialog
+                .find('.datepicker')
+                    .datepicker();
             bg.show();
         },
 

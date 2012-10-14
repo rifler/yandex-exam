@@ -44,7 +44,7 @@
         <form class="popup_dialog_form {{formClass}}">
             <label>
                 Дата лекции<br>
-                <input type="text" name="date" value="{{ date }}">
+                <input class="datepicker" type="text" name="date" value="{{ date }}" data-date-format="dd.mm.yyyy">
             </label>
             <label>
                 Время лекции<br>
@@ -91,6 +91,7 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="https://raw.github.com/andyet/ICanHaz.js/master/ICanHaz.min.js"></script>
     <script type="text/javascript" src="js/lecture.js"></script>
     <script type="text/javascript" src="js/popup.js"></script>
