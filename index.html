@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Some title</title>
+    <link href="http://fonts.googleapis.com/css?family=Cuprum&amp;subset=cyrillic,latin" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="css/screen.css">
+    <link rel="stylesheet" type="text/css" media="print, handheld" href="css/print.css">
+
+    <script id="dateBlockTemplate" type="text/html">
+        <div class="date_block" data-date="{{ date }}">
+            <h2 class="date_header group">
+                <i class="fl_r icon icon-delete date_block_delete"></i>
+                <div class="wrapped">
+                    {{ date }}
+                </div>
+            </h2>
+            <div class="date_content">
+                {{>dateBlockItemTemplate}}
+            </div>
+        </div>
+    </script>
+
+    <script id="dateBlockItemTemplate" type="text/html">
+        {{#lectureList}}
+            <div class="date_item" data-date="{{ date }}" data-time="{{ time }}">
+                {{>dateBlockItemInner}}
+            </div>
+        {{/lectureList}}
+    </script>
+
+    <script id="dateBlockItemInner" type="text/html">
+        <div class="date_item_header group">
+            <div class="fl_r"><i class="icon icon-edit date_item_edit"></i><i class="icon icon-delete date_item_delete"></i></div>
+            <div class="wrapped">
+                {{time}} {{authorName}} "{{lectureTheme}}"
+            </div>
+        </div>
+        <div class="date_item_content">
+        </div>
+    </script>
+
+    <script type="text/html" id="formTemplate">
+        <h1 class="popup_dialog_header">{{ header }}</h1>
+        <form class="popup_dialog_form {{formClass}}">
+            <label>
+                Дата лекции<br>
+                <input class="datepicker" type="text" name="date" value="{{ date }}" data-date-format="dd.mm.yyyy">
+            </label>
+            <label>
+                Время лекции<br>
+                <input type="text" name="time" value="{{ time }}">
+            </label>
+            <label>
+                Автор<br>
+                <input type="text" name="authorName" value="{{ authorName }}">
+            </label>
+            <label>
+                Тема<br>
+                <input type="text" name="lectureTheme" value="{{ lectureTheme }}">
+            </label>
+            <fieldset>
+                <legend>Тезисы (<a href="#" class="popup_form_add_item">добавить</a>)</legend>
+                {{>newThesisTemplate}}
+            </fieldset>
+            <fieldset>
+                <legend>Ссылка на презентацию</legend>
+                <label>
+                    <input type="text" name="materialLink" value="{{ materialLink }}">
+                </label>
+            </fieldset>
+            <button type="submit">{{submitText}}</button>
+            <input type="hidden" name="oldDate" value="{{oldDate}}">
+            <input type="hidden" name="oldTime" value="{{oldTime}}">
+        </form>
+    </script>
+
+    <script type="text/html" id="detailedInfoTemplate">
+        <h1 class="popup_dialog_header">{{ date }} {{ lectureTheme }}</h1>
+        <div class="popup_dialog_content">
+            <ul>
+                <li><span class="title">Время:</span> {{ time }}</li>
+                <li><span class="title">Лектор:</span> {{ authorName }}</li>
+                <li>
+                    <span class="title">Тезисы:</span>
+                    <ul>
+                        {{#thesis}}
+                            <li>{{ . }}</li>
+                        {{/thesis}}
+                    </ul>
+                </li>
+                <li><a href="{{ materialLink }}" target="_blank">Ссылка на презентацию</a></li>
+            </ul>
+        </div>
+    </script>
+
+    <script type="text/html" id="importExportTemplate">
+        <h1 class="popup_dialog_header">{{ header }}</h1>
+        <div class="popup_dialog_content">
+            <form class="popup_dialog_form_{{ type }}">
+                <textarea></textarea>
+                <button type="submit">{{ submitText }}</button>
+            </form>
+        </div>
+    </script>
+
+    <script type="text/html" id="newThesisTemplate">
+        {{#thesis}}
+            <label>
+                <input type="text" name="thesis" value="{{.}}">
+                <a href="#" class="popup_form_delete_item">удалить</a>
+            </label>
+        {{/thesis}}
+        {{^thesis}}
+            <label>
+                <input type="text" name="thesis">
+                <a href="#" class="popup_form_delete_item">удалить</a>
+            </label>
+        {{/thesis}}
+    </script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/andyet/ICanHaz.js/master/ICanHaz.min.js"></script>
+    <script type="text/javascript" src="js/lecture.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+
+    <div class="navbar">
+        <ul class="nav">
+            <li class="active"><a href="#">Главная</a></li>
+            <li><a href="#" class="import">Импорт</a></li>
+            <li><a href="#" class="export">Экспорт</a></li>
+            <li><a href="#" class="newLecture">Новая лекция</a></li>
+        </ul>
+    </div>
+
+    <div class="page">
+    </div><!-- page end -->
+
+</body>
+</html>
