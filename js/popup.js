@@ -6,26 +6,19 @@ var POPUP = (function ($, ich, ya_lectures) {
         hide = function () {
             bg.hide();
             dialog.hide();
+
+            $('.datepicker').remove();
         },
 
-        show = function (contentObj) {
+        show = function (contentObj, template) {
             dialog
                 .empty()
-                .append(ich.formTemplate(contentObj))
+                .append(ich[template](contentObj))
                 .show();
 
             dialog
                 .find('.datepicker')
                     .datepicker();
-            bg.show();
-        },
-
-        showDetailed = function (contentObj) {
-            dialog
-                .empty()
-                .append(ich.detailedInfoTemplate(contentObj))
-                .show()
-
             bg.show();
         },
 
@@ -37,15 +30,19 @@ var POPUP = (function ($, ich, ya_lectures) {
                     var elem = $(this),
                         lecture = ya_lectures.getLecture(elem.data('date'), elem.data('time'));
 
-                    showDetailed(lecture);
+                    show(lecture, 'detailedInfoTemplate');
 
                     return false;
                 })
                 .on('click', '.date_block_delete', function () {
                     ya_lectures.remove({type: 'block', elem: $(this).closest('.date_block')})
+
+                    return false;
                 })
                 .on('click', '.date_item_delete', function () {
                     ya_lectures.remove({type: 'lecture', elem: $(this).closest('.date_item')})
+
+                    return false;
                 })
                 .on('click', '.date_item_edit', function () {
                     var elem = $(this).closest('.date_item'),
@@ -59,16 +56,26 @@ var POPUP = (function ($, ich, ya_lectures) {
                         };
 
                     $.extend(lecture, extObj);
-                    show(lecture);
+                    show(lecture, 'formTemplate');
 
                     return false;
                 })
                 .on('click', '.newLecture', function () {
-                    POPUP.show({formClass: 'popup_dialog_form_add',
+                    show({formClass: 'popup_dialog_form_add',
                                 header: 'Добавить новую лекцию',
                                 submitText: 'Добавить',
                                 oldDate: '14.10.2012'
-                            });
+                            }, 'formTemplate');
+
+                    return false;
+                })
+                .on('click', '.import', function () {
+                    show({type: 'import', submitText: 'Импорт',header: 'Импортировать'}, 'importExportTemplate');
+
+                    return false;
+                })
+                .on('click', '.export', function () {
+                    show({type: 'export', submitText: 'Экспорт',header: 'Экспортировать'}, 'importExportTemplate');
 
                     return false;
                 });
@@ -105,6 +112,22 @@ var POPUP = (function ($, ich, ya_lectures) {
                     ya_lectures.edit($(this).serializeObject());
 
                     hide();
+                })
+                .on('submit', '.popup_dialog_form_import', function (e) {
+                    e.preventDefault();
+
+                    var newLectures = JSON.parse($(this).find('textarea').val());
+
+                    ya_lectures.add(newLectures);
+
+                    hide();
+                })
+                .on('submit', '.popup_dialog_form_export', function (e) {
+                    e.preventDefault();
+
+                    $(this)
+                        .find('textarea')
+                            .val(ya_lectures.getJSON());
                 });
         };
 

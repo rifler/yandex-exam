@@ -3,11 +3,11 @@
     display: inline-block;
     width: 15px;
     height: 15px;
-    line-height: 15px;
-    vertical-align: top;
     background-image: url("../pic/icons.png");
     background-position: 15px 15px;
     background-repeat: no-repeat;
+    vertical-align: top;
+    line-height: 15px;
     cursor: pointer;
 }
 

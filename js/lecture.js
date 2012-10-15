@@ -187,13 +187,15 @@ var YA_LECTURES = (function ($, ich) {
 
             delete edLecture.oldDate;
             delete edLecture.oldTime;
+            delete edLecture.header;
+            delete edLecture.formClass;
+            delete edLecture.submitText;
 
             if (newDate != oldDate) {
                 if (canInsert(edLecture.date, edLecture.time)) {
-                    remove({type: 'lecture', date: oldDatee, time: oldTime, speed: 0});//oldDatee, oldTime);
+                    remove({type: 'lecture', date: oldDatee, time: oldTime, speed: 0});
                     add([edLecture]);
                 }
-
             } else {
                 setLecture(edLecture.date, edLecture.time, edLecture);
                 redrawLecture(edLecture.date, edLecture.time, edLecture);
@@ -268,8 +270,6 @@ var YA_LECTURES = (function ($, ich) {
         },
 
         setLecture = function (date, time, newObj) {
-            var l = getLecture(date, time);
-
             $.extend(getLecture(date, time), newObj);
 
             save();
